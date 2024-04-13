@@ -44,4 +44,6 @@
     <string name="general_n_advices">General \n advices</string>
     <string name="expense">Expense</string>
     <string name="home">Home</string>
+    <string name="your_receipts">Your receipts</string>
+    <string name="capture">Capture</string>
 </resources>

@@ -30,6 +30,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val receipt:CardView = findViewById(R.id.recp)
+        receipt.setOnClickListener{
+            val i = Intent(this,Your_receipts::class.java)
+            startActivity(i)
+        }
+
         val exp: LinearLayout = findViewById(R.id.linear_exp)
 
         exp.setOnClickListener {
