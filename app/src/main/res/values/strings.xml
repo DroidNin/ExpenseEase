@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExpenseEase</string>
+    <string name="home">Home</string>
+    <string name="expense">Expense</string>
+</resources>
