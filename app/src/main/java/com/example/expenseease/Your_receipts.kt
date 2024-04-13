@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,6 +16,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -25,8 +30,13 @@ class Your_receipts : AppCompatActivity() {
     private val cameraRequestCode = 18
     private val images = mutableListOf<Bitmap>() // List to hold the images
     private lateinit var imageAdapter: ImageAdapter // Adapter for RecyclerView
+    private lateinit var recyclerRecp: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_your_receipts)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -34,13 +44,20 @@ class Your_receipts : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        recyclerRecp = findViewById<RecyclerView>(R.id.recycler_recp)
+        imageAdapter = ImageAdapter(images)
+        recyclerRecp.adapter = imageAdapter
+        recyclerRecp.layoutManager = LinearLayoutManager(this)
+
+        // Load images from the database
+        loadImages()
+
+        setupCaptureButton()
+    }
+    private fun setupCaptureButton() {
         val captureButton = findViewById<Button>(R.id.appCompatButton)
         captureButton.setOnClickListener {
             openCamera()
-            val recyclerRecp = findViewById<RecyclerView>(R.id.recycler_recp)
-            imageAdapter = ImageAdapter(images)
-            recyclerRecp.adapter = imageAdapter
-            recyclerRecp.layoutManager = LinearLayoutManager(this)
         }
     }
     private fun openCamera() {
@@ -69,29 +86,44 @@ class Your_receipts : AppCompatActivity() {
     }
     private fun storeImage(image: Bitmap) {
         val savedImageURI = saveImageToInternalStorage(image)
-        val sharedPreferences = getSharedPreferences("MySharedPrefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("imageUri", savedImageURI.toString())
-        editor.apply()
+        val imagePath = savedImageURI.toString()
+        val imageEntity = ImageEntity(imagePath = imagePath)
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDatabase.getDatabase(applicationContext).imageDao().insertImage(imageEntity)
+        }
     }
+
 
     private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
-        // ContextWrapper provides a way to save images internally
-        val wrapper = ContextWrapper(applicationContext)
-        var file = wrapper.getDir("images", Context.MODE_PRIVATE)
-        file = File(file, "${UUID.randomUUID()}.jpg")
-
+        val filename = "${UUID.randomUUID()}.png"
+        val fos: FileOutputStream?
         try {
-            val stream: OutputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.flush()
-            stream.close()
-        } catch (e: IOException){
+            fos = openFileOutput(filename, Context.MODE_PRIVATE)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
+            fos.close()
+        } catch (e: Exception) {
             e.printStackTrace()
         }
-
-        return Uri.parse(file.absolutePath)
+        return Uri.fromFile(File(filesDir, filename))
     }
+    private fun loadImages() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val imageList = AppDatabase.getDatabase(applicationContext).imageDao().getAllImages()
+            withContext(Dispatchers.Main) {
+                images.clear()
+                imageList.forEach {
+                    val bitmap = loadImageFromStorage(Uri.parse(it.imagePath))
+                    images.add(bitmap)
+                }
+                imageAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun loadImageFromStorage(uri: Uri): Bitmap {
+        return BitmapFactory.decodeFile(uri.path)
+    }
+
 
 
 }
