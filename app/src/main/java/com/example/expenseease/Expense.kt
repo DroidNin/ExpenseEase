@@ -4,15 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
 
 class Expense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
 
-        val img_home1: ImageView = findViewById(R.id.img_home1)
+        val home1: LinearLayout = findViewById(R.id.linear_home1)
 
-        img_home1.setOnClickListener {
+        home1.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             // Add the transition animation

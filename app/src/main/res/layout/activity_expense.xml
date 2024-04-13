@@ -21,54 +21,83 @@
             android:background="@drawable/bottom_nav_design"
             android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/img_home1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_home_lightblue"
+            <LinearLayout
+                android:id="@+id/linear_home1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home"
-                android:padding="2dp"
-                android:textColor="#8DA0BD"
-                app:layout_constraintEnd_toEndOf="@+id/img_home1"
-                app:layout_constraintStart_toStartOf="@+id/img_home1"
-                app:layout_constraintTop_toBottomOf="@+id/img_home1" />
+                <ImageView
+                    android:id="@+id/img_home1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_home_lightblue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="@string/home"
+                    android:textColor="#8DA0BD"
+                    app:layout_constraintEnd_toEndOf="@+id/img_home1"
+                    app:layout_constraintStart_toStartOf="@+id/img_home1"
+                    app:layout_constraintTop_toBottomOf="@+id/img_home1" />
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@drawable/bottom_nav_design"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/bottom_nav_design">
 
-            <ImageView
-                android:id="@+id/img_exp1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/expense_darkblue"
+            <LinearLayout
+                android:id="@+id/linear_exp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="@string/expense"
-                android:textColor="#446393"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/img_exp1"
-                app:layout_constraintStart_toStartOf="@+id/img_exp1"
-                app:layout_constraintTop_toBottomOf="@+id/img_exp1" />
+                <ImageView
+                    android:id="@+id/img_exp1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/expense_darkblue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="@string/expense"
+                    android:textColor="#446393"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/img_exp1"
+                    app:layout_constraintStart_toStartOf="@+id/img_exp1"
+                    app:layout_constraintTop_toBottomOf="@+id/img_exp1" />
+
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
