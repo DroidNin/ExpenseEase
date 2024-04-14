@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="30dp"
+        android:textAllCaps="false"
         android:layout_marginRight="100dp"
         android:background="@drawable/signup_bt_custom"
         android:backgroundTint="#5072A7"

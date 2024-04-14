@@ -46,4 +46,12 @@
     <string name="home">Home</string>
     <string name="your_receipts">Your receipts</string>
     <string name="capture">Capture</string>
+    <string name="your_income">Your income</string>
+    <string name="_50_30_20">Financial rule: 50-30-20</string>
+    <string name="manage_your_n_daily_expenses">Manage your \n Daily Expenses</string>
+    <string name="by_using_this_application_you_will_be_n_able_to_manage_your_daily_expenses">By using this application you will be\n able to manage your daily expenses</string>
+    <string name="amount1">Amount:</string>
+    <string name="_2000">2000</string>
+    <string name="category1">Category:</string>
+    <string name="eg_food_shopping_etc">eg. Food ,Shopping etc.</string>
 </resources>

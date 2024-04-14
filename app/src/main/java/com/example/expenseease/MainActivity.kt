@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val userdata: CardView = findViewById(R.id.userdata)
+        userdata.setOnClickListener{
+            val i = Intent(this,User_data::class.java)
+            startActivity(i)
+        }
+
         val receipt:CardView = findViewById(R.id.recp)
         receipt.setOnClickListener{
             val i = Intent(this,Your_receipts::class.java)
