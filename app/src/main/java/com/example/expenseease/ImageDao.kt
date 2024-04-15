@@ -11,3 +11,4 @@ interface ImageDao {
     @Query("SELECT * FROM images")
     suspend fun getAllImages(): List<ImageEntity>
 }
+}}}
