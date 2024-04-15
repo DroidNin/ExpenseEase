@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -30,6 +31,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Get the passed income from the intent
+        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
+        val income = sharedPreferences.getInt("income", 0) // Default to 0 if not found
+        // Calculate the values based on the 50-30-20 rule
+        val availableToUse = income * 0.50
+        val savings = income * 0.30
+        val investments = income * 0.20
+
+        // Update the TextViews with the calculated values
+        findViewById<TextView>(R.id.textView9).text = income.toString() // Displaying the income
+        findViewById<TextView>(R.id.textView12).text = availableToUse.toString() // Displaying the amount available to use
+        findViewById<TextView>(R.id.textView14).text = savings.toString() // Displaying the savings
+        findViewById<TextView>(R.id.tv_invest).text = investments.toString() // Displaying the investments
+        findViewById<TextView>(R.id.amount_left).text = availableToUse.toString() // Displaying the amount left, which is the same as available to use
+
 
         val userdata: CardView = findViewById(R.id.userdata)
         userdata.setOnClickListener{
