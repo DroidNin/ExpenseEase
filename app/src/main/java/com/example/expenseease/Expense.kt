@@ -62,7 +62,6 @@ class Expense : AppCompatActivity() {
         )
 
         // Optional: Set minimum date (e.g., past dates are disabled)
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
 
         datePickerDialog.show()
     }
