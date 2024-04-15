@@ -6,11 +6,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -40,7 +42,9 @@ class Expense : AppCompatActivity() {
         setupRecyclerView()
 
         saveButton.setOnClickListener {
-            saveExpense()
+            if (validateInput()) {
+                saveExpense()
+            }
         }
 
         val homeButton: LinearLayout = findViewById(R.id.linear_home1)
@@ -48,7 +52,7 @@ class Expense : AppCompatActivity() {
             finish()
         }
 
-       val btnDatePicker: LinearLayout = findViewById(R.id.date)
+        val btnDatePicker: LinearLayout = findViewById(R.id.date)
         btnDatePicker.setOnClickListener {
             showDatePickerDialog()
         }
@@ -65,14 +69,29 @@ class Expense : AppCompatActivity() {
         })
     }
 
+    private fun validateInput(): Boolean {
+        if (amountEditText.text.toString().isEmpty() || amountEditText.text.toString().toDoubleOrNull() == null) {
+            Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (categoryEditText.text.isEmpty()) {
+            Toast.makeText(this, "Category cannot be empty", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
     private fun saveExpense() {
-        val amount = amountEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val amount = amountEditText.text.toString().toDouble() // Safe to call after validation
         val category = categoryEditText.text.toString()
         val date = dateTextView.text.toString()
 
         val expense = ExpenseItem(amount = amount, category = category, date = date)
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             db.expenseDao().insert(expense)
+            launch(Dispatchers.Main) {
+                Toast.makeText(this@Expense, "Expense saved successfully", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -93,7 +112,7 @@ class Expense : AppCompatActivity() {
     }
 
     private fun displaySelectedDate() {
-        val selectedDate = "${selectedDay + 1}/${selectedMonth + 1}/$selectedYear"
+        val selectedDate = "${selectedDay + 1}/${selectedMonth + 1}/$selectedYear" // Adjust for zero-based month index
         dateTextView.text = selectedDate
     }
 }
