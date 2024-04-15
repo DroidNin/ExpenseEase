@@ -16,6 +16,7 @@ class Expense : AppCompatActivity() {
         home1.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
+            finish()
             // Add the transition animation
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
