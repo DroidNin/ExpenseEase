@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -88,7 +89,8 @@ class Your_receipts : AppCompatActivity() {
         val savedImageURI = saveImageToInternalStorage(image)
         val imagePath = savedImageURI.toString()
         val imageEntity = ImageEntity(imagePath = imagePath)
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
+            // Since insertImage is a suspend function, it must be called from within a coroutine or another suspend function
             AppDatabase.getDatabase(applicationContext).imageDao().insertImage(imageEntity)
         }
     }
@@ -107,7 +109,7 @@ class Your_receipts : AppCompatActivity() {
         return Uri.fromFile(File(filesDir, filename))
     }
     private fun loadImages() {
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             val imageList = AppDatabase.getDatabase(applicationContext).imageDao().getAllImages()
             withContext(Dispatchers.Main) {
                 images.clear()
