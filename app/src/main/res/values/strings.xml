@@ -16,7 +16,7 @@
     <string name="menu">Menu</string>
     <string name="income">Income</string>
     <string name="amount_available">Amount available</string>
-    <string name="amount_you_are_left_with">Amount you are left with</string>
+    <string name="amount_you_are_left_with">Amount you have used</string>
     <string name="to_invest">To invest</string>
     <string name="to_save">To save</string>
     <string name="enter_your_monthly_income_salary_nhere_to_help_you_manage_your_nexpenses_throughout">Enter your monthly Income/Salary\nhere to help you manage your\nexpenses throughout.</string>

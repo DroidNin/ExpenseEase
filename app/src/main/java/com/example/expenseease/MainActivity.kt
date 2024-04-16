@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        updateDisplay()
+
         // Get the passed income from the intent
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val income = sharedPreferences.getInt("income", 0) // Default to 0 if not found
@@ -78,7 +80,15 @@ class MainActivity : AppCompatActivity() {
             drawerLayout?.openDrawer(GravityCompat.START)
         }
     }
-
+    override fun onResume() {
+        super.onResume()
+        updateDisplay()  // This ensures the display updates when returning from Expense Activity
+    }
+    private fun updateDisplay() {
+        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
+        val availableToUse = sharedPreferences.getFloat("amountLeft", 0f)
+        findViewById<TextView>(R.id.amount_left).text = availableToUse.toString()
+    }
     private fun checkPermissionsAndOpenCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)

@@ -78,6 +78,10 @@ class Expense : AppCompatActivity() {
             Toast.makeText(this, "Category cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }
+        if(dateTextView.text.toString() == "Select date"){
+            Toast.makeText(this, "Select date", Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 
@@ -91,8 +95,18 @@ class Expense : AppCompatActivity() {
             db.expenseDao().insert(expense)
             launch(Dispatchers.Main) {
                 Toast.makeText(this@Expense, "Expense saved successfully", Toast.LENGTH_SHORT).show()
+                updateAvailableAmount(amount)
             }
         }
+    }
+
+
+    private fun updateAvailableAmount(expenseAmount: Double) {
+        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
+        val currentAmount = sharedPreferences.getFloat("amountLeft", 0f)
+        val newAmount = currentAmount - expenseAmount.toFloat()
+        sharedPreferences.edit().putFloat("amountLeft", newAmount).apply()
+        // Optionally finish the activity if required right after updating
     }
 
     private fun showDatePickerDialog() {

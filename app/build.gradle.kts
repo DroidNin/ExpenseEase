@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 
 plugins {
@@ -7,6 +8,10 @@ plugins {
 }
 
 android {
+
+    viewBinding {
+        enable = true
+    }
     namespace = "com.example.expenseease"
     compileSdk = 34
 
