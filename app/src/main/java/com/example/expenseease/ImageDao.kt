@@ -1,5 +1,6 @@
 package com.example.expenseease
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -10,4 +11,8 @@ interface ImageDao {
 
     @Query("SELECT * FROM images")
     suspend fun getAllImages(): List<ImageEntity>
+
+    @Delete
+    suspend fun deleteImage(image: ImageEntity)
+
 }

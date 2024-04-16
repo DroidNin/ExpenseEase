@@ -112,7 +112,7 @@ class Expense : AppCompatActivity() {
     }
 
     private fun displaySelectedDate() {
-        val selectedDate = "${selectedDay + 1}/${selectedMonth + 1}/$selectedYear" // Adjust for zero-based month index
+        val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear" // Adjust for zero-based month index
         dateTextView.text = selectedDate
     }
 }

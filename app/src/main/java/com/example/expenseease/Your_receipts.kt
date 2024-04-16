@@ -46,7 +46,12 @@ class Your_receipts : AppCompatActivity() {
             insets
         }
         recyclerRecp = findViewById<RecyclerView>(R.id.recycler_recp)
-        imageAdapter = ImageAdapter(images)
+        imageAdapter = ImageAdapter(images){ position ->
+            // This gets called when the delete button is clicked
+            images.removeAt(position)
+            imageAdapter.notifyItemRemoved(position)
+            imageAdapter.notifyItemRangeChanged(position, images.size)
+        }
         recyclerRecp.adapter = imageAdapter
         recyclerRecp.layoutManager = LinearLayoutManager(this)
 
@@ -80,50 +85,50 @@ class Your_receipts : AppCompatActivity() {
 
 
 
-    private fun updateRecyclerView(image: Bitmap) {
-        // Add image to your RecyclerView adapter
-        images.add(image)
+    private fun updateRecyclerView(bitmap: Bitmap) {
+        images.add(bitmap)
         imageAdapter.notifyDataSetChanged()
     }
     private fun storeImage(image: Bitmap) {
-        val savedImageURI = saveImageToInternalStorage(image)
-        val imagePath = savedImageURI.toString()
-        val imageEntity = ImageEntity(imagePath = imagePath)
+        val imageUri = saveImageToInternalStorage(image)
+        val imageEntity = ImageEntity(imagePath = imageUri.toString())
         lifecycleScope.launch(Dispatchers.IO) {
-            // Since insertImage is a suspend function, it must be called from within a coroutine or another suspend function
             AppDatabase.getDatabase(applicationContext).imageDao().insertImage(imageEntity)
         }
     }
 
 
+
     private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
-        val filename = "${UUID.randomUUID()}.png"
-        val fos: FileOutputStream?
-        try {
-            fos = openFileOutput(filename, Context.MODE_PRIVATE)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val filename = "${UUID.randomUUID()}.png"  // Ensure unique filename
+        val file = File(getExternalFilesDir(null), filename)  // You can use getFilesDir() for internal storage
+        FileOutputStream(file).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)  // PNG is lossless
         }
-        return Uri.fromFile(File(filesDir, filename))
+        return Uri.fromFile(file)
     }
+
     private fun loadImages() {
         lifecycleScope.launch(Dispatchers.IO) {
             val imageList = AppDatabase.getDatabase(applicationContext).imageDao().getAllImages()
             withContext(Dispatchers.Main) {
                 images.clear()
-                imageList.forEach {
-                    val bitmap = loadImageFromStorage(Uri.parse(it.imagePath))
-                    images.add(bitmap)
+                imageList.forEach { imageEntity ->
+                    val bitmap = loadImageFromStorage(Uri.parse(imageEntity.imagePath))
+                    if (bitmap != null) images.add(bitmap)
                 }
                 imageAdapter.notifyDataSetChanged()
             }
         }
     }
 
-    private fun loadImageFromStorage(uri: Uri): Bitmap {
-        return BitmapFactory.decodeFile(uri.path)
+    private fun loadImageFromStorage(uri: Uri): Bitmap? {
+        return try {
+            BitmapFactory.decodeFile(uri.path)
+        } catch (e: Exception) {
+            Log.e("LoadImage", "Error loading image", e)
+            null
+        }
     }
 
 

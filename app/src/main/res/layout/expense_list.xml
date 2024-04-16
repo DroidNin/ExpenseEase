@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/date_list"
-        android:layout_width="130dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="@string/date"
         android:layout_marginStart="10dp"
