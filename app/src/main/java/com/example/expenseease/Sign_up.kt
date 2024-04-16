@@ -31,14 +31,14 @@ class Sign_up : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.editText2).text.toString()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                // Check if username already exists
                 if (!sharedPreferences.contains(username)) {
-                    // Store user data
-                    sharedPreferences.edit().putString(username, password).apply()
-                    // Redirect to main activity
+                    val editor = sharedPreferences.edit()
+                    editor.putString(username, password)
+                    editor.putString("current_user", username) // Save the current user's username
+                    editor.apply()
+
                     startMainActivity(username)
                 } else {
-                    // Username already exists, show error message
                     Toast.makeText(
                         this,
                         "Username already exists. Please choose a different username.",
@@ -46,18 +46,17 @@ class Sign_up : AppCompatActivity() {
                     ).show()
                 }
             } else {
-                // Username or password field is empty, show error message
                 Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT)
                     .show()
             }
         }
     }
 
-
-    private  fun startMainActivity(username: String) {
-        val intent = Intent(this, Intro_page::class.java)
-        intent.putExtra("username", username)
-        startActivity(intent)
-        finish() // Finish the current activity to prevent the user from coming back to the sign-up screen after logging in
+        private fun startMainActivity(username: String) {
+            val intent = Intent(this, Intro_page::class.java)
+            intent.putExtra("username", username)
+            startActivity(intent)
+            finish() // Finish the current activity to prevent the user from coming back to the sign-up screen after logging in
+        }
     }
-}
+

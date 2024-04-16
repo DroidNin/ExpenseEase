@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         updateDisplay()
+        displayUsername()
 
         // Get the passed income from the intent
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             val drawerLayout: DrawerLayout? = findViewById(R.id.drawer_layout)
             drawerLayout?.openDrawer(GravityCompat.START)
         }
+    }
+    private fun displayUsername() {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val username = sharedPreferences.getString("current_user", "User") // Default to "No User" if not found
+        findViewById<TextView>(R.id.textView6).text = "Hello $username !!"
     }
     override fun onResume() {
         super.onResume()
