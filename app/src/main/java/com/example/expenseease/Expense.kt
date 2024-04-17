@@ -2,9 +2,13 @@ package com.example.expenseease
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +28,7 @@ class Expense : AppCompatActivity() {
     private var selectedDay = 0
 
     private lateinit var amountEditText: EditText
-    private lateinit var categoryEditText: EditText
+    private lateinit var spinner: Spinner
     private lateinit var saveButton: Button
     private lateinit var dateTextView: TextView
     private lateinit var expensesAdapter: ExpensesAdapter
@@ -33,10 +37,16 @@ class Expense : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
 
+        spinner = findViewById(R.id.et_cat)  // Make sure ID matches your layout XML
+        val categories = arrayOf("Food & Drinks", "Clothing", "Medical", "Entertainment", "Travel",
+            "Grocery", "Internet", "Electricity", "Water", "Rent", "Insurance",
+            "Credit", "Book", "Gift", "Others")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
+        spinner.adapter = adapter
+
         db = AppDatabase.getDatabase(applicationContext)
 
         amountEditText = findViewById(R.id.et_amt)
-        categoryEditText = findViewById(R.id.et_cat)
         dateTextView = findViewById(R.id.txtDate)
         saveButton = findViewById(R.id.btn_save)
         setupRecyclerView()
@@ -74,11 +84,11 @@ class Expense : AppCompatActivity() {
             Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (categoryEditText.text.isEmpty()) {
+        if (spinner.selectedItem == null) {
             Toast.makeText(this, "Category cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(dateTextView.text.toString() == "Select date"){
+        if (dateTextView.text.toString() == "Select date") {
             Toast.makeText(this, "Select date", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -87,7 +97,7 @@ class Expense : AppCompatActivity() {
 
     private fun saveExpense() {
         val amount = amountEditText.text.toString().toDouble() // Safe to call after validation
-        val category = categoryEditText.text.toString()
+        val category = spinner.selectedItem.toString()
         val date = dateTextView.text.toString()
 
         val expense = ExpenseItem(amount = amount, category = category, date = date)
@@ -100,13 +110,11 @@ class Expense : AppCompatActivity() {
         }
     }
 
-
     private fun updateAvailableAmount(expenseAmount: Double) {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val currentAmount = sharedPreferences.getFloat("amountLeft", 0f)
         val newAmount = currentAmount - expenseAmount.toFloat()
         sharedPreferences.edit().putFloat("amountLeft", newAmount).apply()
-        // Optionally finish the activity if required right after updating
     }
 
     private fun showDatePickerDialog() {
