@@ -69,8 +69,26 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                    Toast.makeText(this, "hemlo2", Toast.LENGTH_SHORT).show()
-
+                    val i = Intent(this, Profile::class.java)
+                    startActivity(i)
+                    // Handle Item 2 click
+                    true
+                }
+                R.id.privacy -> {
+                    val i = Intent(this, Privacy::class.java)
+                    startActivity(i)
+                    // Handle Item 2 click
+                    true
+                }
+                R.id.refer -> {
+                    val i = Intent(this, Refer::class.java)
+                    startActivity(i)
+                    // Handle Item 2 click
+                    true
+                }
+                R.id.graphical -> {
+                    val i = Intent(this, Graph::class.java)
+                    startActivity(i)
                     // Handle Item 2 click
                     true
                 }

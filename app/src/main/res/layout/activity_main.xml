@@ -487,4 +487,5 @@
             android:background="#F1F1F1"
             app:headerLayout="@layout/header_menu"
             app:menu="@menu/drawer_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
