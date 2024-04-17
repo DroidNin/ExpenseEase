@@ -87,6 +87,16 @@ class MainActivity : AppCompatActivity() {
                     // Handle Item 2 click
                     true
                 }
+
+                R.id.refer -> {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "insert subject here")
+                    val appUrl = "https://play.google.com/store/apps/details?id=my.example.javatpoint"
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, appUrl)
+                    startActivity(Intent.createChooser(shareIntent, "Share via"))
+                    true
+                }
                 // Add more cases for other menu items
                 else -> false
             }
