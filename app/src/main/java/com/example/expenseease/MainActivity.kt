@@ -80,12 +80,7 @@ class MainActivity : AppCompatActivity() {
                     // Handle Item 2 click
                     true
                 }
-                R.id.refer -> {
-                    val i = Intent(this, Refer::class.java)
-                    startActivity(i)
-                    // Handle Item 2 click
-                    true
-                }
+
                 R.id.graphical -> {
                     val i = Intent(this, Graph::class.java)
                     startActivity(i)
