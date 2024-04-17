@@ -10,16 +10,6 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/nav_view"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:background="#F1F1F1"-->
-<!--        android:elevation="20dp"-->
-<!--        app:elevation="20dp"-->
-<!--        app:headerLayout="@layout/header_menu"-->
-<!--        app:menu="@menu/drawer_menu" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="@id/fragment_home_layout">
 
                 <ImageView
-                    android:id="@+id/circularImageView"
+                    android:id="@+id/menu_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/ic_menu" />
@@ -489,4 +479,12 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#F1F1F1"
+            app:headerLayout="@layout/header_menu"
+            app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

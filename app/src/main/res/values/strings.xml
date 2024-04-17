@@ -54,4 +54,6 @@
     <string name="_2000">2000</string>
     <string name="category1">Category:</string>
     <string name="eg_food_shopping_etc">eg. Food ,Shopping etc.</string>
+    <string name="open_drawer" />
+    <string name="close_drawer" />
 </resources>

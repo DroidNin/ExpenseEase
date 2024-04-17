@@ -7,22 +7,30 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var menuButton: View
     companion object {
         private const val REQUEST_CAMERA_PERMISSION = 101
         private const val REQUEST_IMAGE_CAPTURE = 102
@@ -33,6 +41,45 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         updateDisplay()
         displayUsername()
+
+
+        menuButton = findViewById(R.id.menu_button)
+        menuButton.setOnClickListener {
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, R.string.open_drawer, R.string.close_drawer
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    // Handle Item 1 click
+                    showLogoutConfirmationDialog()
+                    true
+                }
+                R.id.profile -> {
+                    Toast.makeText(this, "hemlo2", Toast.LENGTH_SHORT).show()
+
+                    // Handle Item 2 click
+                    true
+                }
+                // Add more cases for other menu items
+                else -> false
+            }
+        }
+
+
 
         // Get the passed income from the intent
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
@@ -75,12 +122,51 @@ class MainActivity : AppCompatActivity() {
             checkPermissionsAndOpenCamera()
         }
 
-        val circularImageView: ImageView = findViewById(R.id.circularImageView)
-        circularImageView.setOnClickListener {
-            val drawerLayout: DrawerLayout? = findViewById(R.id.drawer_layout)
-            drawerLayout?.openDrawer(GravityCompat.START)
-        }
+//        val circularImageView: ImageView = findViewById(R.id.circularImageView)
+//        circularImageView.setOnClickListener {
+//            val drawerLayout: DrawerLayout? = findViewById(R.id.drawer_layout)
+//            drawerLayout?.openDrawer(GravityCompat.START)
+//        }
+
     }
+
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout")
+        builder.setMessage("Are you sure you want to logout?")
+        builder.setPositiveButton("Yes") { dialog, which ->
+            // Handle logout action here, e.g., navigate to logout method
+            performLogout()
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("No") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun performLogout() {
+        // Implement your logout logic here, such as clearing session or navigating to login screen
+        // Example: Redirect to Login activity after logout
+         val intent = Intent(this, Login::class.java)
+         startActivity(intent)
+         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(navView)) {
+                drawerLayout.closeDrawer(navView)
+            } else {
+                drawerLayout.openDrawer(navView)
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun displayUsername() {
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val username = sharedPreferences.getString("current_user", "User") // Default to "No User" if not found

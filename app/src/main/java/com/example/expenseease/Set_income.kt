@@ -40,6 +40,7 @@ class Set_income : AppCompatActivity() {
                 // Start MainActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, "Please enter your income", Toast.LENGTH_SHORT).show()
             }
