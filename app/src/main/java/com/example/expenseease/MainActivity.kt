@@ -42,6 +42,12 @@ class MainActivity : AppCompatActivity() {
         updateDisplay()
         displayUsername()
 
+        val advice: CardView = findViewById(R.id.advice)
+        advice.setOnClickListener{
+            val i = Intent(this, General_advice::class.java)
+            startActivity(i)
+        }
+
 
         menuButton = findViewById(R.id.menu_button)
         menuButton.setOnClickListener {
