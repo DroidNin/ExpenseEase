@@ -7,9 +7,9 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
-import com.github.mikephil.charting.utils.MPPointF
 
+import com.github.mikephil.charting.utils.MPPointF
+import android.graphics.Color
 class Graph : AppCompatActivity() {
     private lateinit var pieChart: PieChart
     private lateinit var db: AppDatabase
@@ -65,7 +65,7 @@ class Graph : AppCompatActivity() {
                 dataSet.sliceSpace = 3f
                 dataSet.iconsOffset = MPPointF(0f, 40f) // Using MPPointF here
                 dataSet.selectionShift = 5f
-                dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+                dataSet.colors = getColors()
 
                 val data = PieData(dataSet)
                 data.setValueTextSize(11f)
@@ -74,5 +74,24 @@ class Graph : AppCompatActivity() {
                 pieChart.invalidate() // refresh
             }
         })
+    }
+    private fun getColors(): ArrayList<Int> {
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(Color.parseColor("#e6194b")) // Red
+        colors.add(Color.parseColor("#3cb44b")) // Green
+        colors.add(Color.parseColor("#ffe119")) // Yellow
+        colors.add(Color.parseColor("#4363d8")) // Blue
+        colors.add(Color.parseColor("#f58231")) // Orange
+        colors.add(Color.parseColor("#911eb4")) // Purple
+        colors.add(Color.parseColor("#46f0f0")) // Cyan
+        colors.add(Color.parseColor("#f032e6")) // Magenta
+        colors.add(Color.parseColor("#bcf60c")) // Lime
+        colors.add(Color.parseColor("#fabebe")) // Pink
+        colors.add(Color.parseColor("#008080")) // Teal
+        colors.add(Color.parseColor("#e6beff")) // Lavender
+        colors.add(Color.parseColor("#9a6324")) // Brown
+        colors.add(Color.parseColor("#fffac8")) // Beige
+        colors.add(Color.parseColor("#800000")) // Maroon
+        return colors
     }
 }
