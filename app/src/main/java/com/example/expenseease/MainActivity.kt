@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
@@ -39,8 +40,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val username = user?.displayName ?: "User"
+
+        val textViewUsername: TextView = findViewById(R.id.textView6)
+        textViewUsername.text = "Hello $username !!"
         updateDisplay()
-        displayUsername()
+
 
         val advice: CardView = findViewById(R.id.advice)
         advice.setOnClickListener{
@@ -151,11 +158,6 @@ class MainActivity : AppCompatActivity() {
             checkPermissionsAndOpenCamera()
         }
 
-//        val circularImageView: ImageView = findViewById(R.id.circularImageView)
-//        circularImageView.setOnClickListener {
-//            val drawerLayout: DrawerLayout? = findViewById(R.id.drawer_layout)
-//            drawerLayout?.openDrawer(GravityCompat.START)
-//        }
 
     }
 
@@ -196,11 +198,11 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun displayUsername() {
-        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        val username = sharedPreferences.getString("current_user", "User") // Default to "No User" if not found
-        findViewById<TextView>(R.id.textView6).text = "Hello $username !!"
-    }
+//    private fun displayUsername() {
+//        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+//        val username = sharedPreferences.getString("current_user", "User") // Default to "No User" if not found
+//        findViewById<TextView>(R.id.textView6).text = "Hello $username !!"
+//    }
     override fun onResume() {
         super.onResume()
         updateDisplay()  // This ensures the display updates when returning from Expense Activity

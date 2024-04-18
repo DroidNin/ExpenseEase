@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154508646632",
+    "project_id": "expenseease-28bcb",
+    "storage_bucket": "expenseease-28bcb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154508646632:android:9d880664d5b02fe733915d",
+        "android_client_info": {
+          "package_name": "com.example.expenseease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDka-MCag0D0-DJ5LD9h2xtmQaQMl-UkJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
