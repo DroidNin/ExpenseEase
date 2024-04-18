@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1) Financial Objectives"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"/>
@@ -30,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2) Use Technology"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -46,6 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3) Establish Budget"
+        android:textColor="@color/black"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -63,6 +67,8 @@
         android:layout_height="wrap_content"
         android:text="4) Track All Expenses"
         android:textSize="18sp"
+        android:textColor="@color/black"
+
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -77,6 +83,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+
         android:text="5) Categorize Expenses"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -93,6 +101,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+
         android:text="6) Implement Approval Processes"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -111,6 +121,8 @@
         android:layout_height="wrap_content"
         android:text="7) Enforce Policies"
         android:textSize="18sp"
+        android:textColor="@color/black"
+
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -126,6 +138,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="8) Monitor and Analyze"
+        android:textColor="@color/black"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -143,6 +157,8 @@
         android:layout_height="wrap_content"
         android:text="9) Negotiate with Vendors"
         android:textSize="18sp"
+        android:textColor="@color/black"
+
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -159,6 +175,8 @@
         android:layout_height="wrap_content"
         android:text="10) Encourage Responsibility"
         android:textSize="18sp"
+        android:textColor="@color/black"
+
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -174,6 +192,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="11) Automate Reconciliation"
+        android:textColor="@color/black"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -192,6 +212,8 @@
         android:text="12) Regular Audits"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
+
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
 
@@ -208,6 +230,8 @@
         android:text="13) Seek Feedback"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
+
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
 
@@ -222,6 +246,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="14) Stay Compliant"
+        android:textColor="@color/black"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -238,6 +264,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="15) Continuous Improvement"
+        android:textColor="@color/black"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
