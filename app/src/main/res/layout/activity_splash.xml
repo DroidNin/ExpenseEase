@@ -12,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_logo"
+        android:elevation="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -28,6 +29,8 @@
         android:layout_marginTop="15dp"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:elevation="50dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/img"
         app:layout_constraintStart_toStartOf="@+id/img"
         app:layout_constraintTop_toBottomOf="@+id/img" />

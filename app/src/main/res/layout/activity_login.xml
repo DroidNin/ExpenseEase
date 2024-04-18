@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:textColor="@color/black"
+        android:elevation="50dp"
         android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/edt_back"
         android:drawableStart="@drawable/email"
+        android:elevation="50dp"
         android:drawablePadding="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -39,6 +41,7 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="50dp"
         android:background="@drawable/edt_back"
         android:drawableStart="@drawable/password"
         android:drawablePadding="10dp"
@@ -60,6 +63,7 @@
         android:backgroundTint="#5072A7"
         android:text="@string/login"
         android:textAllCaps="false"
+        android:elevation="50dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginTop="65dp"
@@ -92,6 +96,7 @@
             android:text="@string/sign_up"
             android:textColor="#5072A7"
             android:textStyle="bold"
+            android:elevation="50dp"
             android:layout_toEndOf="@+id/textView3" />
     </RelativeLayout>
 

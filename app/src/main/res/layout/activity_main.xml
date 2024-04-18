@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="Hi Avatar!"
+                android:elevation="50dp"
                 android:textColor="@color/black"
                 android:textSize="21sp"
                 android:textStyle="bold"
@@ -67,6 +68,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="15dp"
+
                 android:backgroundTint="#DBE1FF"
                 android:outlineAmbientShadowColor="@color/black"
                 app:cardCornerRadius="20dp"
@@ -394,6 +396,7 @@
             android:background="#F1F1F1"
             android:orientation="horizontal"
             android:weightSum="2"
+            android:elevation="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -484,6 +487,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:elevation="50dp"
             android:background="#F1F1F1"
             app:headerLayout="@layout/header_menu"
             app:menu="@menu/drawer_menu" />

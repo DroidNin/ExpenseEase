@@ -26,6 +26,7 @@
         android:textColor="@color/black"
         android:paddingTop="50dp"
         android:text="@string/manage_your_n_daily_expenses"
+        android:elevation="50dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="40dp"
+        android:elevation="50dp"
         android:text="@string/by_using_this_application_you_will_be_n_able_to_manage_your_daily_expenses"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -52,13 +54,14 @@
         android:background="@drawable/signup_bt_custom"
         android:backgroundTint="#5072A7"
         android:text="@string/get_started"
-        android:elevation="20dp"
         android:textAllCaps="false"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textColor="@color/white"
+        android:elevation="50dp"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

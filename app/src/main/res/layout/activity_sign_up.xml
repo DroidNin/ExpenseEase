@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
+        android:elevation="50dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -24,6 +25,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="50dp"
         android:layout_marginTop="15dp"
         android:text="@string/create_your_account"
         android:textColor="@color/black"
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="@string/username"
+        android:elevation="50dp"
         android:inputType="text"
         android:drawableStart="@drawable/user"
         android:drawablePadding="10dp"
@@ -56,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Set Password"
+        android:elevation="50dp"
         android:layout_marginTop="15dp"
         android:padding="10dp"
         android:inputType="textPassword"
@@ -71,6 +75,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_width="match_parent"
+        android:elevation="50dp"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         android:layout_marginTop="15dp"
@@ -94,6 +99,7 @@
         android:layout_marginTop="15dp"
         android:padding="10dp"
         android:inputType="textEmailAddress"
+        android:elevation="50dp"
         android:background="@drawable/edt_back"
         android:drawableStart="@drawable/phone"
         android:drawablePadding="10dp"
@@ -111,7 +117,7 @@
         android:background="@drawable/signup_bt_custom"
         android:backgroundTint="#5072A7"
         android:text="@string/sign_up"
-        android:elevation="20dp"
+        android:elevation="50dp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/editText4"
@@ -141,9 +147,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/textView3"
+            android:elevation="50dp"
             android:text="@string/login"
             android:textColor="#5072A7"
             android:textStyle="bold" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

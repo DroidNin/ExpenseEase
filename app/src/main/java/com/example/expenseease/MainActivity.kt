@@ -42,10 +42,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val user = FirebaseAuth.getInstance().currentUser
-        val username = user?.displayName ?: "User"
 
+        val username = user?.displayName ?: "User"
         val textViewUsername: TextView = findViewById(R.id.textView6)
         textViewUsername.text = "Hello $username !!"
+
         updateDisplay()
 
 
