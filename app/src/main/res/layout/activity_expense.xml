@@ -68,11 +68,18 @@
             android:background="@drawable/edt_back"
             app:layout_constraintStart_toStartOf="@+id/tv_cat"
             app:layout_constraintTop_toBottomOf="@+id/tv_cat">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_category1"
+                android:layout_gravity="center_vertical"/>
             <Spinner
                 android:id="@+id/et_cat"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@drawable/edt_back"
+                android:layout_marginStart="5dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_cat"
                 app:layout_constraintTop_toBottomOf="@+id/tv_cat" />
         </LinearLayout>
