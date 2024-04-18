@@ -19,6 +19,5 @@ class Profile : AppCompatActivity() {
         val textViewUsername: TextView = findViewById(R.id.textView17)
         textViewUsername.text = username
 
-        val email = user?.
     }
 }
